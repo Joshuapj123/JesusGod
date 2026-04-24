@@ -1,0 +1,63 @@
+/* FairLens v4 — Design System */
+:root {
+  --ink:     #07070f;
+  --paper:   #0d0d1a;
+  --surface: #121220;
+  --lift:    #1a1a2e;
+  --edge:    #252540;
+  --edgelt:  #35356a;
+  --muted:   #5a5a8a;
+  --text:    #ddddf0;
+  --bright:  #ffffff;
+
+  --red:     #ff3d5a;
+  --red-dim: rgba(255,61,90,0.15);
+  --amber:   #ffb347;
+  --amber-dim: rgba(255,179,71,0.13);
+  --green:   #00e5a0;
+  --green-dim: rgba(0,229,160,0.1);
+  --blue:    #4facfe;
+  --purple:  #a78bfa;
+  --purple-dim: rgba(167,139,250,0.12);
+
+  --ff-sans:    'Space Grotesk', sans-serif;
+  --ff-mono:    'JetBrains Mono', monospace;
+  --ff-serif:   'Playfair Display', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--ff-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle scanline texture */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+}
+
+::selection { background: var(--purple); color: white; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--edgelt); border-radius: 2px; }
+
+/* Recharts overrides */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line { stroke: var(--edge) !important; }
+.recharts-text { fill: var(--muted) !important; font-family: var(--ff-mono) !important; font-size: 11px !important; }
+.recharts-tooltip-wrapper { outline: none !important; }
