@@ -822,7 +822,7 @@ const DownloadButton = ({ available, datasetInfo }) => {
     try {
       // Use absolute backend URL — never rely on Vite proxy for file downloads
       // because the proxy may return the React HTML shell instead of the CSV.
-      const res = await fetch('http://localhost:8000/download-fixed', {
+      const res = await fetch(\${import.meta.env.VITE_API_URL || ''}/download-fixed', {
         method: 'GET',
         headers: { 'Accept': 'text/csv' },
       })
@@ -2369,7 +2369,7 @@ export default function App() {
     try {
       const fd = new FormData()
       fd.append('file', f)
-      const res = await fetch('/detect-columns', { method: 'POST', body: fd })
+      const res = await fetch(\${import.meta.env.VITE_API_URL || ''}/detect-columns', { method: 'POST', body: fd })
       const data = await res.json()
       setDetection(data)
       // Auto-populate dropdowns from detected candidates
@@ -2412,7 +2412,7 @@ export default function App() {
         // Demo CSV has sex + income — no need to send column params
       }
 
-      const res  = await fetch('/analyze', { method: 'POST', body: fd })
+      const res  = await fetch(\${import.meta.env.VITE_API_URL || ''}/analyze', { method: 'POST', body: fd })
       const data = await res.json()
 
       if (!res.ok) throw new Error(data.detail || `Server error ${res.status}`)
